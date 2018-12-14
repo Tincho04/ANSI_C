@@ -1,0 +1,92 @@
+void modificar(eAuto autos[], int tam)
+{
+    int auxProfesor;
+    char auxPat[25];
+    int auxMarc;
+    char auxMod[20];
+    char respuesta;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el profesor a buscar: ");
+            scanf("%d", &auxProfesor);
+
+            if(autos[i].profesoresDeLaFacultad == auxProfesor)
+            {
+                printf("\nSe a encontrado el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                printf("Esta seguro que desea modificar? s/n");
+                respuesta = getche();
+                if(respuesta=='s')
+                {
+                    printf("\nIngese la nueva patente: ");
+                    fflush(stdin);
+                    gets(auxPat);
+                    printf("\nIngrese la nueva marca: ");
+                    scanf("%d", &auxMarc);
+                    printf("\nIngrese el nuevo modelo: ");
+                    fflush(stdin);
+                    gets(auxMod);
+
+                    strcpy(autos[i].patente,auxPat);
+                    autos[i].marca = auxMarc;
+                    strcpy(autos[i].modelo,auxMod);
+
+                    system("pause");
+                    system("cls");
+                    break;
+                }
+                else
+                {
+                    printf("\nAccion cancelada con exito!!!");
+                    system("pause");
+                    system("cls");
+                    break;
+                }
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+
+    }
+}
+************************************************************************************************
+ flagCapacidad=0;
+            printf("Ingrese el id de la serie que desea modificar: ");
+            scanf("%d", &auxInt);
+
+            for(i=0; i<S; i++)
+            {
+                if(netflix[i].estado==1 && auxInt == netflix[i].idSerie)//encontro la serie
+                {
+
+                    mostrarSerie(netflix[i]);
+                    printf("Ingrese la nueva cantidad de temporadas: ");
+                    scanf("%d", &auxInt);
+                    printf("Esta seguro de modificar? ");
+                    respuesta = getche();
+                    if(respuesta=='s')
+                    {
+                        netflix[i].temporadas = auxInt;
+                    }
+                    else
+                    {
+                        printf("Accion cancelada por el usuario");
+                    }
+                   flagCapacidad=1;
+                break;
+                }
+            }
+            if(flagCapacidad==0)
+            {
+                printf("La serie es inexistente!");
+            }
+

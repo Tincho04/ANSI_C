@@ -1,0 +1,34 @@
+void egreso(eAuto autos[], int tam)
+{
+    int auxProfe;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el profesor: ");
+            scanf("%d", &auxProfe);
+            if(autos[i].profesoresDeLaFacultad == auxProfe)
+            {
+                autos[i].flagEstacionamiento = 0;
+                printf("\nSe a egresado del playon el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                break;
+            }
+            else
+            {
+                printf("\nError!!El profesor ingresado no existe!!!");
+                break;
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+}
+
+***************************************************************************************

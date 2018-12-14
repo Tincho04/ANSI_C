@@ -1,0 +1,63 @@
+void informes(eAuto autos[], int tam)
+{
+    int i,j,k,l;
+
+    for(l=0; l<tam; l++)
+    {
+        if(autos[l].estado == 1)
+        {
+            for(i=0; i<tam-1; i++)
+            {
+                for(j=i+1; j<tam; j++)
+                {
+
+                        
+                }
+
+            }
+            for(k=0; k<tam; k++)
+            {
+                if(autos[k].marca == 501)
+                {
+                    printf("\n\nTotal de autos estacionados de la marca FIAT:\n%d",autos[i].contFIAT);
+
+                }
+                    printf("\nListado de todos los autos estacionados:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+
+
+}
+***************************************************************************************************
+ void ordenarPersonas(EPersona gente[],int gent)
+ {
+
+     int i,k;
+  EPersona auxP;
+     for(i=0;i<gent-1;i++)
+     {
+         for(k=i+1;k<gent;k++)
+         {
+             if(strcmp(gente[i].nombre,gente[k].nombre)>0)
+             {
+                auxP=gente[i];
+                gente[i]=gente[k];
+                gente[k]=auxP;
+
+             }
+
+
+
+         }
+
+     }
+ }

@@ -1,0 +1,62 @@
+do
+    {
+        printf("\n1- Alta de automovil \n");
+        printf("2- Baja de Automovil \n");
+        printf("3- Ingreso del auto a la playa de estacionamiento\n");
+        printf("4- Egreso del automovil \n");
+        printf("5- listado de todos los autos habilitados para estacionar ordenados por marca y patente.");
+        printf("6- La serie menos popular\n");
+        printf("7- total de autos estacionados de la marca fiat.");
+        printf("8- listado de todos los automoviles que estan fuera de estacionamiento.");
+        printf("9-salir");
+
+        printf("\nElija una opcion: ");
+        scanf("%d",&opcion);
+
+
+
+        switch(opcion)
+        {
+        case 1: cargarAutos(autos);
+
+
+                break;
+
+            case 2:
+
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+
+
+            break;
+        case 5:
+
+
+
+            break;
+        case 6:
+
+
+
+            break;
+        case 7:
+
+
+
+            break;
+        case 8:
+
+
+
+            break;
+        case 9:
+            seguir = 'n';
+            break;
+
+            }
+        }while(seguir=='s');

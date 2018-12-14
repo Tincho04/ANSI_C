@@ -1,0 +1,99 @@
+void baja(eAuto autos[], int tam)
+{
+    int auxProf;
+    char respuesta;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el Profesor: ");
+            scanf("%d", &auxProf);
+            if(autos[i].profesoresDeLaFacultad == auxProf)
+            {
+                printf("\nSe a encontrado el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                printf("\nEsta seguro que quiere dar de baja? s/n");
+                respuesta = getche();
+            }
+            if(respuesta == 's')
+            {
+                autos[i].estado = 0;
+                printf("\nAccion realizada con extito!!!\n\n");
+                system("pause");
+                system("cls");
+                break;
+            }
+            else
+            {
+                printf("\nAccion cancelada con exito!!!!\n\n");
+                system("pause");
+                system("cls");
+                break;
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+
+    }
+***************************************************************************************************
+void eliminarPersona (EPersona gente[],int tam)
+{
+    int i;
+    int flagC;
+    int aux;
+    char respuesta;
+
+                        flagC=0;
+
+
+
+
+                        printf("Ingrese el DNI de la persona que desea eliminar ");
+                        fflush(stdin);
+                        scanf("%d",&aux);
+                    for(i=0;i<tam;i++)
+                    {
+                        if(gente[i].estado==1&&aux==gente[i].DNI)
+                        {
+                           mostrarPersonaIgresada(gente[i]);
+
+                            printf("Usted esta seguro de querer elimilarlo ??\n");
+                            respuesta=getch();
+                            if(respuesta=='s')
+                            {
+                                gente[i].estado=0;
+                                printf("\nEl usuario ha sido eliminado\n");
+                            }
+                            else
+                            {
+                                printf("\nCancelado por el usuario\n");
+
+                            }
+
+                             flagC=1;
+                             break;
+
+                        }
+
+                    }
+                    
+
+                    if(flagC==0)
+                    {
+                        printf("El usuario solicitado jamas fue cargado en este sistema ");
+                    }
+
+
+
+}
+
+
+
+
+}

@@ -1,0 +1,329 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "Estacionamiento.h"
+#define A 2
+#define FIAT 501
+#define PEUGEOT 502
+#define FORD 503
+#define OTRO 504
+
+int main()
+{
+    eAuto autos[A];
+    int opcion;
+    char seguir = 's';
+
+    do
+    {
+        printf("\n1.Alta de automovil\n");
+        printf("2.Baja de automovil\n");
+        printf("3.Ingreso del auto a la playa de estacionamiento\n");
+        printf("4.Egreso del automovil\n");
+        printf("5.Informar\n");
+        printf("6.Modificar\n");
+        printf("7.Salir\n\n");
+        printf("Elija una opcion: ");
+        scanf("%d", &opcion);
+
+        while(opcion < 1 || opcion > 7)
+        {
+            printf("\n\nError!!! Elija una opcion entre 1-7:  ");
+            scanf("%d", &opcion);
+        }
+        switch(opcion)
+       {
+        case 1: alta(autos, A);
+
+            break;
+        case 2: baja(autos, A);
+
+            break;
+        case 3: ingreso(autos, A);
+
+            break;
+        case 4: egreso(autos, A);
+
+            break;
+        case 5: informes(autos, A);
+
+            break;
+        case 6: modificar(autos, A);
+            break;
+        case 7: seguir = 'n';
+
+            break;
+        }
+    }while(seguir == 's');
+
+    return 0;
+}
+**********************************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#include "Estacionamiento.h"
+#define FIAT 501
+#define PEUGEOT 502
+#define FORD 503
+#define OTRO 504
+
+void alta(eAuto autos[], int tam)
+{
+    int profesor[20] = {101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120};
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+       
+        printf("\nIngese la patente: ");
+        fflush(stdin);
+        gets(autos[i].patente);
+        printf("\nIngrese la marca: ");
+        scanf("%d", &autos[i].marca);
+        printf("\nIngrese el modelo: ");
+        fflush(stdin);
+        gets(autos[i].modelo);
+
+ for(profesor[i]=profesor[1];profesor[i]<profesor[20];profesor[i]++)
+             {
+                   autos[i].profesoresDeLaFacultad = profesor[i];
+
+
+             }
+
+       autos[i].estado = 1;
+
+
+
+        if(autos[i].marca == 501)
+        {
+            autos[i].contFIAT++;
+
+        }
+
+
+        printf("%s,%d,%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+        printf("El id de profesor al cual pertenece este vehículo es %d",profesor[i]);
+
+
+
+        break;
+    
+    }
+
+
+}
+
+void baja(eAuto autos[], int tam)
+{
+    int auxProf;
+    char respuesta;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el Profesor: ");
+            scanf("%d", &auxProf);
+            if(autos[i].profesoresDeLaFacultad == auxProf)
+            {
+                printf("\nSe a encontrado el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                printf("\nEsta seguro que quiere dar de baja? s/n");
+                respuesta = getche();
+            }
+            if(respuesta == 's')
+            {
+                autos[i].estado = 0;
+                printf("\nAccion realizada con extito!!!\n\n");
+                system("pause");
+                system("cls");
+                break;
+            }
+            else
+            {
+                printf("\nAccion cancelada con exito!!!!\n\n");
+                system("pause");
+                system("cls");
+                break;
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+
+    }
+
+}
+
+void modificar(eAuto autos[], int tam)
+{
+    int auxProfesor;
+    char auxPat[25];
+    int auxMarc;
+    char auxMod[20];
+    char respuesta;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el profesor a buscar: ");
+            scanf("%d", &auxProfesor);
+
+            if(autos[i].profesoresDeLaFacultad == auxProfesor)
+            {
+                printf("\nSe a encontrado el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                printf("Esta seguro que desea modificar? s/n");
+                respuesta = getche();
+                if(respuesta=='s')
+                {
+                    printf("\nIngese la nueva patente: ");
+                    fflush(stdin);
+                    gets(auxPat);
+                    printf("\nIngrese la nueva marca: ");
+                    scanf("%d", &auxMarc);
+                    printf("\nIngrese el nuevo modelo: ");
+                    fflush(stdin);
+                    gets(auxMod);
+
+                    strcpy(autos[i].patente,auxPat);
+                    autos[i].marca = auxMarc;
+                    strcpy(autos[i].modelo,auxMod);
+
+                    system("pause");
+                    system("cls");
+                    break;
+                }
+                else
+                {
+                    printf("\nAccion cancelada con exito!!!");
+                    system("pause");
+                    system("cls");
+                    break;
+                }
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+
+    }
+}
+
+void ingreso(eAuto autos[], int tam)
+{
+    int auxProfe;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el profesor: ");
+            scanf("%d", &auxProfe);
+            if(autos[i].profesoresDeLaFacultad == auxProfe)
+            {
+                autos[i].flagEstacionamiento = 1;
+                printf("\nSe a ingresado al playon el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                break;
+            }
+            else
+            {
+                printf("\nError!!El profesor ingresado no existe!!!");
+                break;
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+}
+
+void egreso(eAuto autos[], int tam)
+{
+    int auxProfe;
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+        if(autos[i].estado == 1)
+        {
+            printf("\nIngrese el profesor: ");
+            scanf("%d", &auxProfe);
+            if(autos[i].profesoresDeLaFacultad == auxProfe)
+            {
+                autos[i].flagEstacionamiento = 0;
+                printf("\nSe a egresado del playon el siguiente auto:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+                break;
+            }
+            else
+            {
+                printf("\nError!!El profesor ingresado no existe!!!");
+                break;
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+}
+
+void informes(eAuto autos[], int tam)
+{
+    int i,j,k,l;
+
+    for(l=0; l<tam; l++)
+    {
+        if(autos[l].estado == 1)
+        {
+            for(i=0; i<tam-1; i++)
+            {
+                for(j=i+1; j<tam; j++)
+                {
+
+                        
+                }
+
+            }
+            for(k=0; k<tam; k++)
+            {
+                if(autos[k].marca == 501)
+                {
+                    printf("\n\nTotal de autos estacionados de la marca FIAT:\n%d",autos[i].contFIAT);
+
+                }
+                    printf("\nListado de todos los autos estacionados:\n\nPATENTE\t\tMARCA\t\t\tMODELO\n%s\t\t%d\t\t%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+
+            }
+        }
+        else
+        {
+            printf("\nError!! No a dado nada de alta!!!\n\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+
+
+}

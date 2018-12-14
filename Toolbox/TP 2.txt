@@ -1,0 +1,451 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "funciones.h"
+#include <conio.h>
+#include <string.h>
+#define A 20
+
+
+int main()
+{
+    EPersona gente[A];
+    inicializarRP(gente,A);
+    char seguir='s';
+    int opcion=0;
+    int i;
+    char aux[20];
+    //int flag=0;
+    int DNI,edad,estado,Pos;
+    char nombre[50];
+   // int respuesta;
+    int cont18=0;
+    int cont19=0;
+    int cont35=0;
+
+
+
+
+
+    do
+    {
+        printf("\n1- Agregar persona\n");
+        printf("2- Borrar persona\n");
+        printf("3- Imprimir lista ordenada por  nombre\n");
+        printf("4- Imprimir grafico de edades\n\n");
+        printf("5- Salir\n");
+
+        printf("Elija una opcion: ");
+        scanf("%d",&opcion);
+        while(opcion<1||opcion>5)
+        {
+            printf("Elija una opcion valida: ");
+            scanf("%d",&opcion);
+        }
+
+
+
+
+        switch(opcion)
+        {
+        case 1:
+
+
+            Pos = EspacioLibre(gente,A);
+            if(Pos==-1)
+            {
+                printf("No hay espacio disponible\n");
+
+
+            }
+            else
+            {
+                if(Pos!=-1)
+                {
+
+
+                    printf("\ningrese su nombre ");
+                    fflush(stdin);
+                    scanf("%s",&nombre);
+                    printf("ingrese su docuento ");
+                    fflush(stdin);
+                    scanf("%d",&DNI);
+                    for(i=0; i<A; i++)
+                    {
+                        while(DNI==gente[i].DNI)
+                        {
+                            printf("Este DNI ya fue registrado,ingrese uno valido ");
+                            fflush(stdin);
+                            scanf("%d",&DNI);
+                        }
+
+                    }
+                    while(DNI>81000000||DNI<999999)
+                    {
+                        printf("ingrese un Documento valido ");
+                        fflush(stdin);
+                        scanf("%d",&DNI);
+
+                    }
+
+
+                    printf("ingrese su edad ");
+                    fflush(stdin);
+                    scanf("%d",&edad);
+                    while(edad<1||edad>120)
+                    {
+                        printf("introduzca una edad valida");
+                        fflush(stdin);
+                        scanf("%d",&edad);
+                    }
+
+                    gente[Pos]=ingresarPersona(DNI,edad,nombre);
+
+                    mostrarPersonaIgresada(gente[Pos]);
+
+                    if(edad<19)
+                    {
+                        cont18++;
+                    }
+                    else
+                    {
+                        if(edad<36&&edad>18)
+                        {
+                            cont19++;
+                        }
+                        else
+                        {
+                            cont35++;
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+            break;
+
+        case 2:
+            eliminarPersona(gente,A);
+
+
+            break;
+        case 3:
+            ordenarPersonas(gente,A);
+
+            mostrarGente(gente,A);
+            break;
+        case 4:
+            grafico(gente[i].edad,cont18,cont19,cont35);
+
+
+            break;
+        case 5:
+            seguir = 'n';
+            break;
+
+        }
+    }
+    while(seguir=='s');
+
+    return 0;
+}
+
+
+**************************************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+#include "funciones.h"
+#include <conio.h>
+#include <string.h>
+#define A 20
+
+
+
+EPersona ingresarPersona(int DNI,int edad,char nombre[])
+{
+int estado;
+EPersona gente;
+gente.DNI=DNI;
+strcpy(gente.nombre,nombre);
+gente.edad=edad;
+gente.estado=1;
+
+
+
+
+return gente;
+}
+void mostrarGente(EPersona gente[], int per)
+{
+    int i;
+    for(i=0;i<per;i++)
+    {
+        if(gente[i].estado!=0)
+        {
+            mostrarPersonaIgresada(gente[i]);
+        }
+    }
+}
+
+void mostrarPersonaIgresada(EPersona gente)
+{
+    printf("\n%s\t%d\t%d\n",gente.nombre,gente.DNI,gente.edad);
+}
+
+int  EspacioLibre(EPersona gente[],int per)
+{
+    int i;
+    int lug= -1 ;
+    for(i=0;i<per;i++)
+    {
+       if(gente[i].estado==0)
+       {
+           lug=i;
+           break;
+       }
+    }
+    return lug;
+}
+
+void inicializarRP(EPersona gente[],int gent)
+{
+    int i;
+    for(i=0;i<gent;i++)
+    {
+        gente[i].estado=0;
+    }
+
+}
+
+ void ordenarPersonas(EPersona gente[],int gent)
+ {
+
+     int i,k;
+  EPersona auxP;
+     for(i=0;i<gent-1;i++)
+     {
+         for(k=i+1;k<gent;k++)
+         {
+             if(strcmp(gente[i].nombre,gente[k].nombre)>0)
+             {
+                auxP=gente[i];
+                gente[i]=gente[k];
+                gente[k]=auxP;
+
+             }
+
+
+
+         }
+
+     }
+ }
+void grafico(EPersona gente[],int cont18,int cont19, int cont35)
+ {
+     int mayor;
+     int flag1=0;
+     int i;
+
+
+    if(cont18>=cont19&&cont18>=cont35)
+     {
+         mayor=cont18;
+     }
+
+   else
+    {
+         if(cont19>=cont18&&cont19>=cont35)
+         {
+             mayor=cont19;
+         }
+         else
+         {
+
+            mayor=cont35;
+         }
+    }
+
+     for(i=mayor;i>0;i--)
+     {
+         if(i<10)
+         {
+             printf("%02d|",i);
+         }
+         else
+         {
+             printf("%02d|",i);
+         }
+
+         if(i<=cont18)
+         {
+             printf("*");
+         }
+         if(i<=cont19)
+         {
+             flag1=1;
+             printf("\t*");
+         }
+         if(i<=cont35)
+         {
+             if(flag1==0)
+             {
+                 printf("\t\t*");
+             }
+             else
+             {
+                 if(flag1==1)
+                 {
+                     printf("\t*");
+                 }
+             }
+         }
+         printf("\n");
+     }
+
+
+       printf("--+-----------------");
+       printf("\n |<18\t19-35\t>35");
+ }
+
+
+
+void eliminarPersona (EPersona gente[],int tam)
+{
+    int i;
+    int flagC;
+    int aux;
+    char respuesta;
+
+                        flagC=0;
+
+
+
+
+                        printf("Ingrese el DNI de la persona que desea eliminar ");
+                        fflush(stdin);
+                        scanf("%d",&aux);
+                    for(i=0;i<tam;i++)
+                    {
+                        if(gente[i].estado==1&&aux==gente[i].DNI)
+                        {
+                           mostrarPersonaIgresada(gente[i]);
+
+                            printf("Usted esta seguro de querer elimilarlo ??\n");
+                            respuesta=getch();
+                            if(respuesta=='s')
+                            {
+                                gente[i].estado=0;
+                                printf("\nEl usuario ha sido eliminado\n");
+                            }
+                            else
+                            {
+                                printf("\nCancelado por el usuario\n");
+
+                            }
+
+                             flagC=1;
+                             break;
+
+                        }
+
+                    }
+                    if(flagC==0)
+                    {
+                        printf("El usuario solicitado jamas fue cargado en este sistema ");
+                    }
+
+
+
+}
+
+
+
+
+**************************************************************************************************
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
+
+
+typedef struct
+{
+
+    char nombre[50];
+    int edad;
+    int estado;
+    int DNI;
+
+}EPersona;
+
+
+
+
+  EPersona ingresarPersona(int,int,char[]);
+/**
+ *
+ * \param Verifica si el usuario ha sido ingresado
+ * \return muestra los datos del usuario ingresado
+ *
+ */
+
+ void mostrarGente(EPersona gente[], int per);
+ /**
+
+  * Datos del usuario
+  * \param mustra los datos del usuario ingresado
+  * \return los datos del usuario
+  *
+  */
+
+ void mostrarPersonaIgresada(EPersona gente);
+
+ /**
+  * Verifica si hay espacio libre en el array
+  * \param verifica el estado del usurio
+  * \return espacio disponible
+  *
+  */
+
+ int  EspacioLibre(EPersona gente[],int per);
+
+ /**
+  * inicialisa el estado del usurio en 0
+  * \return el estado del usurio
+  *
+  */
+
+ void inicializarRP(EPersona gente[],int gent);
+ /**
+  * Ordena afabateticamente los usurios registrados
+  * \param compara los nombres de los usuarios
+  * \return lista con usuarios ordenados alfabeticamente
+  *
+  */
+
+ void ordenarPersonas(EPersona gente[],int gent);
+ /**
+  * muestra en un Grafico de barras a los usuarios
+  * \param separa a los usurios por rango de edades
+  * \return muestra el grafico de los usurios en el rango correspondiente segun su edad
+  *
+  */
+
+ void grafico(EPersona gente[],int,int,int);
+
+/**
+ * Da de baja a un usurio previamente cargado
+ * \param pregunta el DNI del usuario para indetificar que usuario deseamos dar de baja
+ * \param muestra al usurio seleccionado para la baja
+ * \param pregunta si esta seguro de querer eliminarlo,en caso contrario cancela la funcion
+ * \return el usuario eliminado
+ *
+ */
+
+ void eliminarPersona(EPersona[],int);
+
+
+
+#endif // FUNCIONES_H_INCLUDED
+
+

@@ -1,0 +1,135 @@
+void alta(eAuto autos[], int tam)
+{
+    int profesor[20] = {101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120};
+    int i;
+
+    for(i=0; i<tam; i++)
+    {
+       
+        printf("\nIngese la patente: ");
+        fflush(stdin);
+        gets(autos[i].patente);
+        printf("\nIngrese la marca: ");
+        scanf("%d", &autos[i].marca);
+        printf("\nIngrese el modelo: ");
+        fflush(stdin);
+        gets(autos[i].modelo);
+
+ for(profesor[i]=profesor[1];profesor[i]<profesor[20];profesor[i]++)
+             {
+                   autos[i].profesoresDeLaFacultad = profesor[i];
+
+
+             }
+
+       autos[i].estado = 1;
+
+
+
+        if(autos[i].marca == 501)
+        {
+            autos[i].contFIAT++;
+
+        }
+
+
+        printf("%s,%d,%s",autos[i].patente,autos[i].marca,autos[i].modelo);
+        printf("El id de profesor al cual pertenece este vehículo es %d",profesor[i]);
+
+
+
+        break;
+    
+    }
+
+
+}
+
+***********************************************************************************************
+
+void cargarAutos(eAuto autos[])
+{
+    int i;
+    int modelo;
+    char patente[20];
+    int marca;
+    int pos;
+    int profesores[20]={100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119};
+
+    for(i=0;i<E;i++)
+    {
+        pos = EspacioLibre(autos,E);
+        if(pos==-1)
+        {
+            printf("No hay espacio disponible\n");
+
+
+        }
+        else
+        {
+            if(pos!=-1)
+            {
+
+
+                printf("ingrese patente del Automovil ");
+                fflush(stdin);
+                scanf("%s",&patente);
+                printf("ingrese modelo ");
+                fflush(stdin);
+                scanf("%d",&modelo);
+                printf("ingrese marca ");
+                fflush(stdin);
+                scanf("%d",&marca);
+                autos[i].profesoresDeLaFacultad= profesores[i];
+
+
+
+
+
+
+
+                autos[pos]=ingresarAuto(marca,modelo,patente);
+
+                mostrarAutos(autos[pos]);
+
+
+
+
+
+
+            }
+        }
+        break;
+    }
+
+}
+
+int  EspacioLibre(eAuto autos[],int aut)
+{
+    int i;
+    int lug= -1 ;
+    for(i=0;i<aut;i++)
+    {
+       if(autos[i].estado==0)
+       {
+           lug=i;
+           break;
+       }
+    }
+    return lug;
+}
+eAuto ingresarAuto(char marca[],int modelo, char patente[])
+{
+
+eAuto aut;
+aut.modelo=modelo;
+strcpy(aut.marca,marca);
+strcpy(aut.patente,patente);
+aut.estado=1;
+return aut;
+}
+void mostrarAutos(eAuto autos)
+{
+    printf("%s\t%d\t%d",autos.patente,autos.marca,autos.modelo);
+}
+

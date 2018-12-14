@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "funciones.h"
+#include <conio.h>
+#include <string.h>
+*************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+#include "Estacionamiento.h"
+#define A 2
+#define FIAT 501
+#define PEUGEOT 502
+#define FORD 503
+#define OTRO 504
