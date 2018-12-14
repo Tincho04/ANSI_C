@@ -1,0 +1,22 @@
+system ("COLOR x");
+0 = NEGRO
+1 = AZUL
+2 = VERDE
+3 = AGUAMARINA
+4 = ROJO
+5 = PURPURA
+6 = AMARILLO
+7 = BLANCO
+8 = GRIS
+9 = AZUL CLARO
+A = VERDE CLARO
+B = AGUAMARINA CLARO
+C = ROJO CLARO
+D = PURPURA CLARO
+E = AMARILLO CLARO
+F = BLANCO BRILLANTE
+
+
+EJ:
+
+system ("COLOR F0");   // Fondo Blanco brillante - Letra en negro

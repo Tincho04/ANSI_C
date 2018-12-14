@@ -1,0 +1,4 @@
+resultado = calcularfactorial(numero);
+
+
+resultado = numero*calcularFactorial(numero-1);

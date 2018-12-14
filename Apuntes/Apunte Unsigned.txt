@@ -1,0 +1,9 @@
+Variable Unsigned:
+(Sin signo)
+
+Diferencia entre naturales y enteros.
+
+una variable declarada unsigned siempre empleara valores enteros positivos, nunca negativos.
+
+por ejemplo un dato signed char es un numero que va desde -128 hasta el +127
+mientras que un unsigned char va desde el 0 hasta el +255

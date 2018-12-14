@@ -1,0 +1,7 @@
+Eliminacion de carpeta en github
+en el bash o menu de comandos
+
+rm -rf "Nombre de la carpeta"
+git add .
+git commit -m"carpeta removida"
+git push origin master

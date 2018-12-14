@@ -1,0 +1,10 @@
+Windows
+fflush(stdin)
+gets
+strcpy
+
+LINUX
+__fpurge(stdin)
+fgets
+strncpy
+

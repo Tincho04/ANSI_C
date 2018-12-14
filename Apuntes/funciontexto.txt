@@ -1,0 +1,13 @@
+int nota;
+
+nota=pedirEntero("Ingrese nota: ");
+printf("nota: %d" ),nota;
+
+int pedirEntero(char texto [])
+{
+int numero;
+printf("%d", texto);
+scanf("%d", &numero;
+
+return numero;
+}

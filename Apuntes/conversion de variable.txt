@@ -1,0 +1,11 @@
+Conversion de Float, char e int
+
+int variable A
+Float variableB
+int variableC
+
+variableA=(float)variableA; // Transforma Int VariableA a float VariableA
+
+variableB=(int)variableB;   // transforma float variableB a int variableB
+
+variableC=(char)variableC; // transforma int variableC a char variableC
